@@ -1,0 +1,23 @@
+specVersion: 0.0.5
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Lock
+    network: goerli
+    source:
+      address: "0x19aB6D6aC1321dD67f464fb3932df9F68309d064"
+      abi: Lock
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Withdrawal
+      abis:
+        - name: Lock
+          file: Lock/abis/Lock.json
+      eventHandlers:
+        - event: Withdrawal(uint256,uint256)
+          handler: handleWithdrawal
+      file: Lock/Lock.wasm
